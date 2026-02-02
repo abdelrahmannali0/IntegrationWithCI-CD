@@ -6,34 +6,22 @@ on:
 jobs:
   sanity-test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Trigger Sanity Test on LambdaTest
         shell: bash
-        env:
-          LAMBDATEST_AUTH: ${{ secrets.LT_ATM_AUTH_TOKEN }}
         run: |
           echo "Triggering sanity tests on LambdaTest"
-          
-          response=$(curl --location 'https://test-manager-api.lambdatest.com/api/atm/v1/hyperexecute' \
+
+          response=$(curl --fail --show-error --silent \
+            --location 'https://test-manager-api.lambdatest.com/api/atm/v1/hyperexecute' \
             --header 'Content-Type: application/json' \
-            --header "Authorization: ${LAMBDATEST_AUTH}" \
+            --header "Authorization: ${{ secrets.LT_ATM_AUTH_TOKEN }}" \
             --data '{
               "test_run_id": "01KGCHY1WYEM3NFMSGKDSFET5Q",
               "concurrency": 1,
               "title": "integrationWithCI/CD"
-            }' \
-            --fail-with-body \
-            --silent \
-            --show-error
+            }'
           )
-          
+
           echo "Response: $response"
-          
-          # Optional: Parse and validate response
-          if echo "$response" | jq empty 2>/dev/null; then
-            echo "✓ Valid JSON response received"
-          else
-            echo "✗ Invalid response format"
-            exit 1
-          fi
