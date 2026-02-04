@@ -1,28 +1,21 @@
 name: Run Sanity Tests on LambdaTest
-
-
 on:
   workflow_dispatch:
-
-
 jobs:
   sanity-test:
     runs-on: ubuntu-latest
-
     steps:
     - name: Trigger Sanity Test on LambdaTest
       shell: bash
       run: |
-        echo "Triggering sanity tests on LambdaTest"<br>
-
+        echo "Triggering sanity tests on LambdaTest"
         response=$(curl --fail --show-error --silent \
           --location "https://test-manager-api.lambdatest.com/api/atm/v1/hyperexecute" \
           --header "Content-Type: application/json" \
-          --header "Authorization: ${{ secrets.LT_ATM_AUTH_TOKEN }}" \
+          --header "Authorization: YS5yZWRhQGZvb2RpY3MuY29tOiNGb29kaWNzMTIz" \
           --data '{
             "test_run_id": "01KGCHY1WYEM3NFMSGKDSFET5Q",
             "concurrency": 1,
             "title": "integrationWithCI/CD"
-          }')<br>
-
-        echo "Response: $response
+          }')
+        echo "Response: $response"
