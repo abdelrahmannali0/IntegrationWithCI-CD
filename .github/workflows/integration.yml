@@ -12,7 +12,7 @@ jobs:
         response=$(curl --fail --show-error --silent \
           --location "https://test-manager-api.lambdatest.com/api/atm/v1/hyperexecute" \
           --header "Content-Type: application/json" \
-          --header "Authorization: YS5yZWRhQGZvb2RpY3MuY29tOiNGb29kaWNzMTIz" \
+          --header "Authorization: Basic YXJlZGFmb29kaWNzOkxUX2V3SEhVS3h0a3VWb0tsUWNBNkg4TzhOYnpWWXJDUFdYalJqd1FVZGxRNlJnMDhG" \
           --data '{
             "test_run_id": "01KGQ64P8H8Q6WQKTV03H1ADZR",
             "concurrency": 1,
