@@ -14,7 +14,7 @@ jobs:
           --header "Content-Type: application/json" \
           --header "Authorization: YS5yZWRhQGZvb2RpY3MuY29tOiNGb29kaWNzMTIz" \
           --data '{
-            "test_run_id": "01KGCHY1WYEM3NFMSGKDSFET5Q",
+            "test_run_id": "01KGQ64P8H8Q6WQKTV03H1ADZR",
             "concurrency": 1,
             "title": "integrationWithCI/CD"
           }')
